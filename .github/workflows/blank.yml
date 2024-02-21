@@ -30,13 +30,14 @@ jobs:
         run: |
              git clone https://git.yoctoproject.org/git/poky
              cd poky
-             apt update
-             apt install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat libsdl1.2-dev xterm -y
+             ls
+             sudo apt update
+             sudo apt install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat libsdl1.2-dev xterm -y
              source oe-init-build-env
              bitbake core-image-minimal
              bitbake -c populate_sdk core-image-minimal
              cd tmp/deploy/images/qemux86_64/
-             apt-get install syslinux-utils
+             sudo apt-get install syslinux-utils
              isohybrid core-image-minimal-qemux86_64.wic
              
       - name: Archive artifacts
