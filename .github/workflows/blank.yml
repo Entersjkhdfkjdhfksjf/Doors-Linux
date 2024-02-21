@@ -27,8 +27,15 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: git clone https://git.yoctoproject.org/git/poky
+        run: |
+             git clone https://git.yoctoproject.org/git/poky
+             cd poky
+             apt update
+             apt install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat libsdl1.2-dev xterm -y
+             source oe-init-build-env
+             bitbake core-image-minimal
              
+
 
 
       # Runs a set of commands using the runners shell
