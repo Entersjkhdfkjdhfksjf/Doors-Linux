@@ -33,8 +33,12 @@ jobs:
         # Create the ISO (you might need additional parameters here)
         genisoimage -o $GITHUB_WORKSPACE/binary-hybrid.iso -R live-system
 
-    - name: Upload ISO artifact
+    - name: List files in $GITHUB_WORKSPACE
+      run: |
+        ls -la $GITHUB_WORKSPACE
+
+    - name: Upload live-system artifact
       uses: actions/upload-artifact@v2
       with:
-        name: debian-live-iso
-        path: $GITHUB_WORKSPACE/binary-hybrid.iso
+        name: debian-live-system
+        path: $GITHUB_WORKSPACE
