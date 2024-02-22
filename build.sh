@@ -25,5 +25,11 @@ lb config --mode debian
 # Set architecture to amd64 (adjust if needed)
 echo "ARCHITECTURES=\"amd64\"" >> auto/config
 
+# Build the chroot environment
+sudo lb chroot
+
+# Exit the chroot environment
+sudo lb chroot -- purge
+
 # Build the live system
 lb build
