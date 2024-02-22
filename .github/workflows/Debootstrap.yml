@@ -28,7 +28,7 @@ jobs:
       run: |
         # Add any additional customizations or configurations here
         # For example, mounting /proc, /sys, /dev before chrooting
-        sudo chroot live-system /bin/bash -c "apt-get update && apt-get install -y ubuntu-session"
+        sudo chroot live-system /bin/bash -c "apt-get update && cat /etc/os-release"
         
         # Create the ISO (you might need additional parameters here)
         genisoimage -o $GITHUB_WORKSPACE/binary-hybrid.iso -R live-system
