@@ -1,0 +1,48 @@
+name: Build Debian Live System
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-live-system:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y live-build debootstrap
+
+    - name: Set up live-build directory
+      run: |
+        rm -rf live-build
+        mkdir -p live-build/binary
+
+        # Use debootstrap to create a minimal chroot
+        sudo debootstrap --arch=amd64 testing live-build/chroot
+
+        # Copy essential files to the chroot
+        sudo cp /etc/resolv.conf live-build/chroot/etc/
+
+    - name: Customize chroot
+      run: |
+        echo hi
+
+    - name: Build live system
+      run: |
+        # Generate the live system directly from the chroot
+        sudo lb config --chroot live-build/chroot
+        sudo lb build
+        cp live-build/binary/hd-media/boot.img.gz $GITHUB_WORKSPACE/binary-hybrid.iso
+      working-directory: live-build
+
+    - name: Upload ISO artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: debian-live-iso
+        path: $GITHUB_WORKSPACE/binary-hybrid.iso
