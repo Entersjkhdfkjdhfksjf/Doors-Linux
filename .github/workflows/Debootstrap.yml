@@ -16,7 +16,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y debootstrap
+        sudo apt-get install -y debootstrap genisoimage
 
     - name: Set up live system
       run: |
