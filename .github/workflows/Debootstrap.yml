@@ -41,4 +41,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: binary-hybrid
-        path: $GITHUB_WORKSPACE/binary-hybrid.iso
+        path: binary-hybrid.iso
