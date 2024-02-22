@@ -26,11 +26,5 @@ jobs:
         lb config --mode debian
         echo "ARCHITECTURES=\"amd64\"" >> auto/config
 
-    - name: Build chroot environment
-      run: sudo lb chroot
-
-    - name: Exit chroot
-      run: sudo lb chroot -- purge
-
     - name: Build live system
       run: lb build
