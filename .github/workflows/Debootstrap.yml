@@ -39,7 +39,7 @@ jobs:
       run: |
         set -x
         # Generate the live system directly from the chroot
-        sudo lb config --chroot live-build/chroot
+        sudo lb config --chroot live-build/chroot --distribution focal
         sudo lb build
         cp live-build/binary/hd-media/boot.img.gz $GITHUB_WORKSPACE/binary-hybrid.iso
         set +x
