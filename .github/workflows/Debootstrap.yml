@@ -1,4 +1,4 @@
-name: Build Debian Live System
+name: Build Debian Live System Debootstrap
 
 on:
   push:
