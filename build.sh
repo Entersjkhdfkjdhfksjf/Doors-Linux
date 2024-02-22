@@ -11,10 +11,13 @@ sudo apt-get update
 sudo apt-get install -y live-build
 
 # Remove existing live-build directory
-rm -rf "$LIVE_BUILD_DIR"
+sudo rm -rf "$LIVE_BUILD_DIR"
 
 # Recreate live-build directory
-mkdir -p "$LIVE_BUILD_DIR"
+sudo mkdir -p "$LIVE_BUILD_DIR"
+
+# Change ownership of live-build directory to the current user
+sudo chown -R $(whoami):$(whoami) "$LIVE_BUILD_DIR"
 
 # Change to live-build directory
 cd "$LIVE_BUILD_DIR"
