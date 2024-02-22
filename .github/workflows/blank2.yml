@@ -27,4 +27,13 @@ jobs:
         echo "ARCHITECTURES=\"amd64\"" >> auto/config
 
     - name: Build live system
-      run: lb build
+      run: |
+        lb build
+        cp binary-hybrid.iso $GITHUB_WORKSPACE/binary-hybrid.iso
+      working-directory: live-build
+
+    - name: Upload ISO artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: debian-live-iso
+        path: $GITHUB_WORKSPACE/binary-hybrid.iso
