@@ -40,5 +40,5 @@ jobs:
     - name: Upload live-system artifact
       uses: actions/upload-artifact@v2
       with:
-        name: debian-live-system
+        name: binary-hybrid
         path: $GITHUB_WORKSPACE/binary-hybrid.iso
