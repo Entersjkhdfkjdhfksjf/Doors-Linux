@@ -43,6 +43,6 @@ jobs:
       - name: Archive artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: core-image-minimal-qemux86_64.wic.is
+          name: core-image-minimal-qemux86_64.wic.iso
           path: |
             tmp/deploy/images/qemux86_64/
