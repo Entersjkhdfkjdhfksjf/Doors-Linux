@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-      
-  workflow_dispatch:
 
 jobs:
   build-live-system:
@@ -18,32 +16,22 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y live-build debootstrap
+        sudo apt-get install -y debootstrap
 
-    - name: Set up live-build directory
+    - name: Set up live system
       run: |
-        rm -rf live-build
-        mkdir -p live-build/binary
+        rm -rf live-system
+        mkdir -p live-system
+        sudo debootstrap --arch=amd64 focal live-system
 
-        # Use debootstrap to create a minimal chroot
-        sudo debootstrap --arch=amd64 testing live-build/chroot
-
-        # Copy essential files to the chroot
-        sudo cp /etc/resolv.conf live-build/chroot/etc/
-
-    - name: Customize chroot
+    - name: Build ISO
       run: |
-        echo hi
-
-    - name: Build live system
-      run: |
-        set -x
-        # Generate the live system directly from the chroot
-        sudo lb config --chroot live-build/chroot --distribution focal
-        sudo lb build
-        cp live-build/binary/hd-media/boot.img.gz $GITHUB_WORKSPACE/binary-hybrid.iso
-        set +x
-      working-directory: live-build
+        # Add any additional customizations or configurations here
+        # For example, mounting /proc, /sys, /dev before chrooting
+        sudo chroot live-system /bin/bash -c "apt-get update && apt-get install -y gnome-session"
+        
+        # Create the ISO (you might need additional parameters here)
+        genisoimage -o $GITHUB_WORKSPACE/binary-hybrid.iso -R live-system
 
     - name: Upload ISO artifact
       uses: actions/upload-artifact@v2
