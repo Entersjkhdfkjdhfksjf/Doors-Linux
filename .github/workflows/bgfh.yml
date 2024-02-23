@@ -27,8 +27,10 @@ jobs:
     - name: Navigate to buildroot directory
       run: cd buildroot
 
-    - name: Load configuration
-      run: make qemu_x86_64_x11_defconfig
+    - name: Load configuration and generate Makefile
+      run: |
+         make qemu_x86_64_x11_defconfig
+         make
 
     - name: Build Linux distribution
       run: make
