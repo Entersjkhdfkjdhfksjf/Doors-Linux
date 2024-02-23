@@ -25,11 +25,11 @@ jobs:
          cp qemu_x86_64_x11_defconfig buildroot
          ls buildroot/configs
 
-    - name: Load configuration
+    - name: Load configuration and make os
       run: |
          cd buildroot
          make qemu_x86_64_x11_defconfig
+         make
 
-    - name: Build Linux distribution
-      run: make
+
       
