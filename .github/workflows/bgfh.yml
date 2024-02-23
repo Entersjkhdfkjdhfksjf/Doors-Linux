@@ -20,11 +20,14 @@ jobs:
 
     - name: Move configuration file
       run: |
-         mv qemu_x86_64_x11_defconfig buildroot/configs
+         cp qemu_x86_64_x11_defconfig buildroot/configs
+         cp qemu_x86_64_x11_defconfig buildroot
          ls buildroot/configs
 
     - name: Load configuration
-      run: make qemu_x86_64_x11_defconfig
+      run: |
+         cd buildroot
+         make qemu_x86_64_x11_defconfig
 
     - name: Build Linux distribution
       run: make
