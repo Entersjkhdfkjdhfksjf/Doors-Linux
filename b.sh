@@ -8,14 +8,14 @@ cd buildroot
 echo buildrootdir
 ls
 # Set the configuration file
-CONFIG_FILE="qemu_x86_64_x11_defconfig(1).txt"
 
 cd ..
-mv .config ../buildroot
+mv qemu_x86_64_x11_defconfig ../buildroot/images
 # Load the configuration
 cd buildroot
+echo makeing
 ls
-make qemu_x86_64_x11_defconfig.txt
+make qemu_x86_64_x11_defconfig
 
 # Build the Linux distribution
 make
