@@ -23,13 +23,12 @@ jobs:
       run: |
          cp qemu_x86_64_x11_defconfig buildroot/configs
          cp qemu_x86_64_x11_defconfig buildroot
+         cp .config buildroot
          ls buildroot/configs
 
     - name: Load configuration and make os
       run: |
          cd buildroot
-         rm .config
-         make qemu_x86_64_x11_defconfig
          make -f Makefile
 
 
