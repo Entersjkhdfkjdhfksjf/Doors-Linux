@@ -1,0 +1,29 @@
+name: Build Linux Distribution Buildroot new
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Clone Buildroot repository
+      run: |
+        git clone https://github.com/buildroot/buildroot.git
+        cd buildroot
+
+    - name: Move configuration file
+      run: mv qemu_x86_64_x11_defconfig buildroot/images
+
+    - name: Load configuration
+      run: make qemu_x86_64_x11_defconfig
+
+    - name: Build Linux distribution
+      run: make
+      
