@@ -29,7 +29,7 @@ jobs:
       run: |
          cd buildroot
          make qemu_x86_64_x11_defconfig
-         make -f Makefile.legacy
+         make -f Makefile
 
 
       
