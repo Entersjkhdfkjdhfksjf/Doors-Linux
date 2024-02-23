@@ -11,10 +11,10 @@ cd buildroot
 CONFIG_FILE="qemu_x86_64_x11_defconfig(1).txt"
 
 cd ..
-mv qemu_x86_64_x11_defconfig (1).txt ../buildroot
+mv qemu_x86_64_x11_defconfig.txt ../buildroot
 # Load the configuration
 cd buildroot
-make qemu_x86_64_x11_defconfig (1).txt
+make qemu_x86_64_x11_defconfig.txt
 
 # Build the Linux distribution
 make
