@@ -17,6 +17,7 @@ jobs:
       run: |
         git clone https://github.com/buildroot/buildroot.git
         ls buildroot
+        cat buildroot/Makefile
 
     - name: Move configuration file
       run: |
