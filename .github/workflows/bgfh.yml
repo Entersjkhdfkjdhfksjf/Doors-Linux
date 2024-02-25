@@ -29,7 +29,7 @@ jobs:
 
     - name: Load configuration and generate Makefile
       run: |
-         make qemu_x86_64_x11_defconfig
+         make qemu_x86_64_defconfig
          make
 
     - name: Build Linux distribution
