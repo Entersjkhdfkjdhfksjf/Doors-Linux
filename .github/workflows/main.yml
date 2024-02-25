@@ -1,0 +1,33 @@
+name: Build with Buildroot and upload artifacts
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Buildroot dependencies
+        run: sudo apt-get update && sudo apt-get install -y git fakeroot qemu-user-static
+
+      - name: Clone Buildroot
+        run: git clone https://github.com/buildroot/buildroot.git
+
+      - name: Configure Buildroot (x86_64)
+        run: |
+          cd buildroot
+          make x86_64_defconfig
+
+      - name: Build the image
+        run: |
+          make
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts # Customize the artifact name
+          path: buildroot/output/images/ # Path to artifacts
+          
