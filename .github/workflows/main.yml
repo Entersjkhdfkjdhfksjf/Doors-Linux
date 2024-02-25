@@ -19,7 +19,7 @@ jobs:
       - name: Configure Buildroot (x86_64)
         run: |
           cd buildroot
-          make x86_64_defconfig
+          make qemu_x86_64_defconfig
 
       - name: Build the image
         run: |
