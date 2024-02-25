@@ -16,7 +16,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y debootstrap genisoimage
+        sudo apt-get install -y debootstrap genisoimage syslinux 
 
     - name: Set up live system
       run: |
@@ -32,6 +32,7 @@ jobs:
         
         # Create the ISO (you might need additional parameters here)
         genisoimage -o $GITHUB_WORKSPACE/binary-hybrid.iso -R live-system
+        syslinux $GITHUB_WORKSPACE/binary-hybrid.iso
 
     - name: List files in $GITHUB_WORKSPACE
       run: |
