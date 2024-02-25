@@ -23,6 +23,7 @@ jobs:
 
       - name: Build the image
         run: |
+          cd buildroot
           make
 
       - name: Upload build artifacts
