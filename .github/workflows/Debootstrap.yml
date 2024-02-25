@@ -33,7 +33,6 @@ jobs:
         
         # Create the ISO (you might need additional parameters here)
         genisoimage -o $GITHUB_WORKSPACE/binary-hybrid.iso -R live-system
-        syslinux $GITHUB_WORKSPACE/binary-hybrid.iso
 
     - name: List files in $GITHUB_WORKSPACE
       run: |
