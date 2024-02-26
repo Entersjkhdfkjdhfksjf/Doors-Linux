@@ -20,7 +20,7 @@ jobs:
         run: |
           cp newconf buildroot/configs
           cd buildroot
-          make newconf
+          make qemu_x86_64_defconfig
 
       - name: Build the image
         run: |
