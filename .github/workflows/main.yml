@@ -18,18 +18,18 @@ jobs:
 
       - name: Configure Buildroot (x86_64)
         run: |
-          cp newconf buildroot/configs
-          cd buildroot
+          cp newconf buildrootx/configs
+          cd buildrootx
           make warp7_defconfig
 
       - name: Build the image
         run: |
-          cd buildroot
+          cd buildrootx
           make
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
           name: build-artifacts # Customize the artifact name
-          path: buildroot/output/images/ # Path to artifacts
+          path: buildrootx/output/images/ # Path to artifacts
           
