@@ -28,7 +28,10 @@ jobs:
         run: |
           cd buildrootx
           make
-          cd output/images
+          
+      - name: Syslinux
+        run: |
+          cd buildrootx/output/images
           syslinux install rootfs.iso
 
       - name: Upload build artifacts
