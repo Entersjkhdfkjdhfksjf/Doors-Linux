@@ -33,6 +33,8 @@ jobs:
         run: |
           cd buildrootx/output/images
           ls
+          rename rootfs.iso9660 rootfs.iso
+          syslinux --install rootfs.iso
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
